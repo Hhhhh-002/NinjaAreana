@@ -1,0 +1,26 @@
+// Generated from GameCommands.java. To update, set NINJA_SERVER_ROOT and run npm run sync:data.
+export const CMD = {
+  "LOGIN": 1001,
+  "REGISTER": 1002,
+  "MATCH_HISTORY": 1003,
+  "HEARTBEAT": 1004,
+  "MOVE": 2001,
+  "SPLIT": 2002,
+  "EJECT": 2003,
+  "SHIFT": 2004,
+  "JUMP": 2010,
+  "BLOCK": 2011,
+  "CAST_SKILL": 2012,
+  "BATTLE_SNAPSHOT": 3010,
+  "LEAVE": 2005,
+  "START_GAME": 2006,
+  "KICKED_OFFLINE": 3001,
+  "SCENE_SNAPSHOT": 3002,
+  "PLAYER_ENTERED": 3003,
+  "FOOD_ADDED": 3004,
+  "FOOD_EATEN": 3005,
+  "PLAYER_LEFT": 3006,
+  "BALL_CHANGED": 3007,
+  "MATCH_RANKING": 3008,
+  "MATCH_ENDED": 3009
+} as const;

@@ -1,0 +1,481 @@
+{
+  "tickRate": 30,
+  "heroes": [
+    {
+      "id": 101,
+      "key": "hero_101_hayate",
+      "animations": {
+        "idle": {
+          "ticks": 48,
+          "loop": true,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "run": {
+          "ticks": 24,
+          "loop": true,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "stop": {
+          "ticks": 9,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "jump_start": {
+          "ticks": 6,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "jump_rise": {
+          "ticks": 24,
+          "loop": true,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "jump_fall": {
+          "ticks": 24,
+          "loop": true,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "jump_land": {
+          "ticks": 9,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "guard_start": {
+          "ticks": 6,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "guard_loop": {
+          "ticks": 30,
+          "loop": true,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "guard_hit": {
+          "ticks": 9,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "guard_end": {
+          "ticks": 6,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "attack_light_1": {
+          "ticks": 15,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "attack_light_2": {
+          "ticks": 17,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "attack_heavy": {
+          "ticks": 27,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "hit_light": {
+          "ticks": 9,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "hit_heavy": {
+          "ticks": 18,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "death": {
+          "ticks": 36,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "victory": {
+          "ticks": 45,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "skill_wind_dash": {
+          "ticks": 18,
+          "loop": false,
+          "timing": "config_snapshot",
+          "upper_only": false,
+          "skill_id": 1001,
+          "phases": {
+            "startup": [
+              0,
+              5
+            ],
+            "active": [
+              5,
+              8
+            ],
+            "recovery": [
+              8,
+              18
+            ]
+          }
+        },
+        "skill_wind_dash_startup_upper": {
+          "ticks": 5,
+          "loop": false,
+          "timing": "config_snapshot",
+          "upper_only": true,
+          "skill_id": 1001,
+          "phases": {
+            "startup": [
+              0,
+              5
+            ],
+            "active": [
+              5,
+              8
+            ],
+            "recovery": [
+              8,
+              18
+            ]
+          }
+        },
+        "skill_shadow_step_ground": {
+          "ticks": 13,
+          "loop": false,
+          "timing": "config_snapshot",
+          "upper_only": false,
+          "skill_id": 1002,
+          "phases": {
+            "startup": [
+              0,
+              0
+            ],
+            "active": [
+              0,
+              1
+            ],
+            "recovery": [
+              1,
+              13
+            ]
+          }
+        },
+        "skill_shadow_step_air": {
+          "ticks": 13,
+          "loop": false,
+          "timing": "config_snapshot",
+          "upper_only": false,
+          "skill_id": 1002,
+          "phases": {
+            "startup": [
+              0,
+              0
+            ],
+            "active": [
+              0,
+              1
+            ],
+            "recovery": [
+              1,
+              13
+            ]
+          }
+        },
+        "skill_training_shuriken": {
+          "ticks": 13,
+          "loop": false,
+          "timing": "config_snapshot",
+          "upper_only": false,
+          "skill_id": 1003,
+          "phases": {
+            "startup": [
+              0,
+              4
+            ],
+            "active": [
+              4,
+              5
+            ],
+            "recovery": [
+              5,
+              13
+            ]
+          }
+        },
+        "skill_training_shuriken_startup_upper": {
+          "ticks": 4,
+          "loop": false,
+          "timing": "config_snapshot",
+          "upper_only": true,
+          "skill_id": 1003,
+          "phases": {
+            "startup": [
+              0,
+              4
+            ],
+            "active": [
+              4,
+              5
+            ],
+            "recovery": [
+              5,
+              13
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": 102,
+      "key": "hero_102_iwaya",
+      "animations": {
+        "idle": {
+          "ticks": 48,
+          "loop": true,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "run": {
+          "ticks": 24,
+          "loop": true,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "stop": {
+          "ticks": 9,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "jump_start": {
+          "ticks": 6,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "jump_rise": {
+          "ticks": 24,
+          "loop": true,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "jump_fall": {
+          "ticks": 24,
+          "loop": true,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "jump_land": {
+          "ticks": 9,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "guard_start": {
+          "ticks": 6,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "guard_loop": {
+          "ticks": 30,
+          "loop": true,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "guard_hit": {
+          "ticks": 9,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "guard_end": {
+          "ticks": 6,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "attack_light_1": {
+          "ticks": 15,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "attack_light_2": {
+          "ticks": 17,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "attack_heavy": {
+          "ticks": 27,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "hit_light": {
+          "ticks": 9,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "hit_heavy": {
+          "ticks": 18,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "death": {
+          "ticks": 36,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "victory": {
+          "ticks": 45,
+          "loop": false,
+          "timing": "preview_only_pending_gameplay_config",
+          "upper_only": false
+        },
+        "skill_rock_smash": {
+          "ticks": 28,
+          "loop": false,
+          "timing": "config_snapshot",
+          "upper_only": false,
+          "skill_id": 2001,
+          "phases": {
+            "startup": [
+              0,
+              9
+            ],
+            "active": [
+              9,
+              13
+            ],
+            "recovery": [
+              13,
+              28
+            ]
+          }
+        },
+        "skill_rock_smash_startup_upper": {
+          "ticks": 9,
+          "loop": false,
+          "timing": "config_snapshot",
+          "upper_only": true,
+          "skill_id": 2001,
+          "phases": {
+            "startup": [
+              0,
+              9
+            ],
+            "active": [
+              9,
+              13
+            ],
+            "recovery": [
+              13,
+              28
+            ]
+          }
+        },
+        "skill_ironwall_enter": {
+          "ticks": 12,
+          "loop": false,
+          "timing": "config_snapshot",
+          "upper_only": false,
+          "skill_id": 2002,
+          "phases": {
+            "startup": [
+              0,
+              3
+            ],
+            "active": [
+              3,
+              4
+            ],
+            "recovery": [
+              4,
+              12
+            ]
+          }
+        },
+        "skill_ironwall_enter_startup_upper": {
+          "ticks": 3,
+          "loop": false,
+          "timing": "config_snapshot",
+          "upper_only": true,
+          "skill_id": 2002,
+          "phases": {
+            "startup": [
+              0,
+              3
+            ],
+            "active": [
+              3,
+              4
+            ],
+            "recovery": [
+              4,
+              12
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": 1001,
+      "animations": [
+        "skill_wind_dash"
+      ],
+      "upper": "skill_wind_dash_startup_upper"
+    },
+    {
+      "id": 1002,
+      "animations": [
+        "skill_shadow_step_ground",
+        "skill_shadow_step_air"
+      ],
+      "upper": null
+    },
+    {
+      "id": 1003,
+      "animations": [
+        "skill_training_shuriken"
+      ],
+      "upper": "skill_training_shuriken_startup_upper"
+    },
+    {
+      "id": 2001,
+      "animations": [
+        "skill_rock_smash"
+      ],
+      "upper": "skill_rock_smash_startup_upper"
+    },
+    {
+      "id": 2002,
+      "animations": [
+        "skill_ironwall_enter"
+      ],
+      "upper": "skill_ironwall_enter_startup_upper"
+    }
+  ]
+}
