@@ -1,0 +1,11 @@
+﻿技能ID（唯一，供程序关联）,所属角色ID（101风隐/102岩牙）,技能名称（中文）,技能类别（主动/被动）,按键（被动填空）,释放条件（仅地面/任意/自动）,蓝量消耗（点）,冷却时长（逻辑帧）,前摇（逻辑帧）,生效持续（逻辑帧）,后摇（逻辑帧）,判定方式（身前矩形/弹道/自身）,攻击框朝前起点（像素）,攻击框朝前终点（像素）,攻击框距脚底下边界（像素）,攻击框距脚底上边界（像素）,弹道速度（像素/逻辑帧）,弹道最大飞行距离（像素）,弹道碰撞框宽（像素）,弹道碰撞框高（像素）,前摇是否可被打断（是/否）,开放模式（对战/训练/全部）,策划备注（程序不作规则判断）
+skill_id,hero_id,skill_name,skill_type,input_key,cast_condition,mana_cost,cooldown_ticks,startup_ticks,active_ticks,recovery_ticks,hitbox_type,hitbox_start_px,hitbox_end_px,hitbox_bottom_px,hitbox_top_px,projectile_speed_px_tick,projectile_max_distance_px,projectile_width_px,projectile_height_px,can_interrupt,enabled_mode,notes
+1001,101,疾影斩,ACTIVE,U,GROUND_ONLY,25,240,5,3,10,FRONT_RECT,20,110,15,110,,,,,True,ALL,沿朝向突进；一次施法每个目标最多命中一次
+1002,101,影替,ACTIVE,I,ANY,30,360,0,1,12,SELF,,,,,,,,,False,ALL,向背后撤离并短暂无敌；位移由效果表驱动
+1003,101,试炼飞镖,ACTIVE,L,GROUND_ONLY,15,180,4,1,8,PROJECTILE,,,,,15,450,28,12,True,TRAINING,仅训练模式；飞镖沿LEFT/RIGHT水平飞行；实体由服务端创建
+1101,101,普攻·风切,ACTIVE,J,GROUND_ONLY,0,15,3,3,9,FRONT_RECT,0,85,0,110,,,,,True,ALL,普攻；命中计入逐风；挥空保留计数；格挡清零
+2101,102,普攻·岩拳,ACTIVE,J,GROUND_ONLY,0,18,4,3,8,FRONT_RECT,0,80,0,115,,,,,True,ALL,普攻；使用普通攻击动作；不消耗蓝量
+2001,102,崩岳击,ACTIVE,U,GROUND_ONLY,30,270,9,4,15,FRONT_RECT,15,100,0,120,,,,,True,ALL,重击，命中伤害；被格挡则额外削减格挡值
+2002,102,铁壁势,ACTIVE,I,GROUND_ONLY,40,420,3,1,8,SELF,,,,,,,,,True,ALL,2秒伤害减免50%，移速降低30%；减益与增益时间一致
+9001,101,逐风,PASSIVE,,AUTO,0,0,0,0,0,SELF,,,,,,,,,False,ALL,5秒内连续命中3次普攻触发移速+20%，3秒，内置冷却12秒
+9002,102,岩魂护体,PASSIVE,,AUTO,0,0,0,0,0,SELF,,,,,,,,,False,ALL,战斗中血量首次从>=30%变为<30%时触发；结算伤害后获得200护盾

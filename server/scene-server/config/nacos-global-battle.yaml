@@ -1,0 +1,19 @@
+# 合并到 Nacos global-prod.yaml（或当前环境的 global-*.yaml），不要覆盖已有数据库/Redis配置。
+# 两张2172×724背景共用1440×480逻辑画布，背景按比例缩放；服务器只处理平地和左右边界。
+# 以下是首版可调手感，单位是逻辑像素和逻辑帧，频率固定为30Hz。
+battle:
+  mode: VERSUS # TRAINING 允许单人开局及训练飞镖；VERSUS 两人开始。
+  width-px: 1440
+  ground-y-px: 400
+  jump-velocity-px-tick: -18
+  gravity-px-tick2: 1.2
+  max-fall-speed-px-tick: 18
+  basic-attack-skill-ids: "1101,2101" # 两位角色的 J 普攻，共用现有 CAST_SKILL 入口。
+  mana-regen-amount: 5 # 每次自然恢复的蓝量；0 关闭；不超过角色最大蓝量。
+  mana-regen-interval-ticks: 30 # 30Hz 下每秒恢复一次；1 表示每逻辑帧恢复一次。
+  max-catch-up: 5
+  max-pending-commands: 256
+  max-scenes-per-instance: 128
+  empty-scene-idle-seconds: 60
+  match-duration-seconds: 600 # 沿用参考项目的时限，可调整；正式对局也在一方死亡时结束。
+  ranking-retention-days: 7
