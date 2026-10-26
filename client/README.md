@@ -110,4 +110,4 @@ J 为两位角色的普攻（1101/2101），无需蓝量；L 为风隐的训练�
 
 斩击、重击地面冲击、影替残影、命中/格挡火花和持续状态光效由服务器施法、状态、结果驱动。当前为程序绘制的临时表现，可替换成正式 Spine 特效；表现不参与伤害计算。提供的占位骨骼仅在 run 动画中修正腿部朝向和脚掌旋转，不修改原美术工程。
 
-服务端仓库：[NinjaArenaServer](https://github.com/Hhhhh-002/NinjaArenaServer)。
+服务端仓库：[NinjaArenaServer](https://github.com/Hhhhh-002/NinjaAreana/tree/main/server)。

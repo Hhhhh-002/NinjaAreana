@@ -128,4 +128,4 @@ Nacos `battle.basic-attack-skill-ids: "1101,2101"`；`battle.mana-regen-amount: 
 
 当前匹配先按Nacos实例权重随机选Scene服务，同宿主机可加权；在选中的实例里优先加入sceneId最小且可加入的房间，无房间则创建，两人到齐开战。没有段位/Elo匹配，也没有跨Scene实例的统一匹配池。
 
-客户端仓库：[NinjaArenaClient](https://github.com/Hhhhh-002/NinjaArenaClient)。
+客户端仓库：[NinjaArenaClient](https://github.com/Hhhhh-002/NinjaAreana/tree/main/client)。
