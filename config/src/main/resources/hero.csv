@@ -1,0 +1,4 @@
+﻿角色ID（唯一；关联skill.hero_id）,角色名称,基础最大生命（点；联调初始值）,基础最大蓝量（点；联调初始值）,基础最大格挡值（点；联调初始值）,基础移速（像素/逻辑帧；30Hz；联调初始值）,受击框宽度（像素）,受击框水平偏移（像素；正数朝右；不随Facing镜像）,受击框上边界距脚底向上（像素）,受击框下边界距脚底向上（像素）,策划备注（程序不作规则判断）
+hero_id,hero_name,max_hp,max_mana,max_guard,move_speed_px_tick,hurtbox_width_px,hurtbox_offset_x_px,hurtbox_top_from_feet_px,hurtbox_bottom_from_feet_px,notes
+101,风隐,1000,100,100,7,48,0,120,0,生命/蓝量/格挡/移速为待确认的联调初始值；受击框沿用V1.2规范；技能按skill.hero_id关联
+102,岩牙,1300,80,100,6,48,0,120,0,生命/蓝量/格挡/移速为待确认的联调初始值；受击框沿用V1.2规范；技能按skill.hero_id关联
