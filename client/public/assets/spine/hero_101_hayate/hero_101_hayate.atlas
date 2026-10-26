@@ -1,0 +1,96 @@
+hero_101_hayate.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+head
+  rotate: false
+  xy: 4, 4
+  size: 98, 98
+  orig: 98, 98
+  offset: 0, 0
+  index: -1
+torso
+  rotate: false
+  xy: 110, 4
+  size: 92, 136
+  orig: 92, 136
+  offset: 0, 0
+  index: -1
+scarf
+  rotate: false
+  xy: 210, 4
+  size: 270, 186
+  orig: 270, 186
+  offset: 0, 0
+  index: -1
+belt
+  rotate: false
+  xy: 488, 4
+  size: 144, 154
+  orig: 144, 154
+  offset: 0, 0
+  index: -1
+coat
+  rotate: false
+  xy: 640, 4
+  size: 194, 164
+  orig: 194, 164
+  offset: 0, 0
+  index: -1
+thigh
+  rotate: false
+  xy: 842, 4
+  size: 78, 174
+  orig: 78, 174
+  offset: 0, 0
+  index: -1
+calf
+  rotate: false
+  xy: 928, 4
+  size: 62, 156
+  orig: 62, 156
+  offset: 0, 0
+  index: -1
+foot
+  rotate: false
+  xy: 4, 198
+  size: 54, 172
+  orig: 54, 172
+  offset: 0, 0
+  index: -1
+upperarm
+  rotate: false
+  xy: 66, 198
+  size: 46, 66
+  orig: 46, 66
+  offset: 0, 0
+  index: -1
+forearm
+  rotate: false
+  xy: 120, 198
+  size: 56, 88
+  orig: 56, 88
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 184, 198
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+shoulder
+  rotate: false
+  xy: 250, 198
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: false
+  xy: 334, 198
+  size: 396, 42
+  orig: 396, 42
+  offset: 0, 0
+  index: -1

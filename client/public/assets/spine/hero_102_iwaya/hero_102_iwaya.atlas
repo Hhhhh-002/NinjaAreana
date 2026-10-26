@@ -1,0 +1,96 @@
+hero_102_iwaya.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+head
+  rotate: false
+  xy: 4, 4
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+torso
+  rotate: false
+  xy: 112, 4
+  size: 106, 136
+  orig: 106, 136
+  offset: 0, 0
+  index: -1
+scarf
+  rotate: false
+  xy: 226, 4
+  size: 212, 184
+  orig: 212, 184
+  offset: 0, 0
+  index: -1
+belt
+  rotate: false
+  xy: 446, 4
+  size: 140, 66
+  orig: 140, 66
+  offset: 0, 0
+  index: -1
+coat
+  rotate: false
+  xy: 594, 4
+  size: 188, 186
+  orig: 188, 186
+  offset: 0, 0
+  index: -1
+thigh
+  rotate: false
+  xy: 790, 4
+  size: 100, 180
+  orig: 100, 180
+  offset: 0, 0
+  index: -1
+calf
+  rotate: false
+  xy: 898, 4
+  size: 58, 122
+  orig: 58, 122
+  offset: 0, 0
+  index: -1
+foot
+  rotate: false
+  xy: 964, 4
+  size: 48, 66
+  orig: 48, 66
+  offset: 0, 0
+  index: -1
+upperarm
+  rotate: false
+  xy: 4, 198
+  size: 62, 60
+  orig: 62, 60
+  offset: 0, 0
+  index: -1
+forearm
+  rotate: false
+  xy: 74, 198
+  size: 52, 96
+  orig: 52, 96
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 134, 198
+  size: 62, 92
+  orig: 62, 92
+  offset: 0, 0
+  index: -1
+shoulder
+  rotate: false
+  xy: 204, 198
+  size: 154, 148
+  orig: 154, 148
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: false
+  xy: 366, 198
+  size: 374, 152
+  orig: 374, 152
+  offset: 0, 0
+  index: -1
