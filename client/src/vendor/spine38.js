@@ -4140,7 +4140,7 @@ var spine;
 			var input = new BinaryInput(binary);
 			skeletonData.hash = input.readString();
 			skeletonData.version = input.readString();
-			if ("3.8.75" == skeletonData.version && skeletonMap.hash !== "shadow-duel-generated-v1")
+			if ("3.8.75" == skeletonData.version)
 				throw new Error("Unsupported skeleton data, please export with a newer version of Spine.");
 			skeletonData.x = input.readFloat();
 			skeletonData.y = input.readFloat();
@@ -5552,7 +5552,7 @@ var spine;
 			if (skeletonMap != null) {
 				skeletonData.hash = skeletonMap.hash;
 				skeletonData.version = skeletonMap.spine;
-				if ("3.8.75" == skeletonData.version && skeletonMap.hash !== "shadow-duel-generated-v1")
+				if ("3.8.75" == skeletonData.version && !["shadow-duel-generated-v1", "y9GIuQgeCgwUu5f5lKkPCFnB9NM", "+co3anCn2w6d8JjvEX0+d/P024I", "Cw2AuzaRksqt183MP99NYh082sU"].includes(skeletonMap.hash))
 					throw new Error("Unsupported skeleton data, please export with a newer version of Spine.");
 				skeletonData.x = skeletonMap.x;
 				skeletonData.y = skeletonMap.y;

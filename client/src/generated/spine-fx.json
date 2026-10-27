@@ -1,0 +1,377 @@
+{
+  "key": "shadow_duel_fx_library",
+  "effects": {
+    "fx_wind_charge": {
+      "label": "刀刃聚风",
+      "ticks": 5,
+      "seconds": 0.16666666666666666,
+      "loop_preview": true,
+      "anchor": "weapon",
+      "anchor_bone": "fx_wind_charge_anchor",
+      "parts": [
+        "fx_wind_charge_glow",
+        "fx_wind_charge_wind_00",
+        "fx_wind_charge_wind_01",
+        "fx_wind_charge_wind_02",
+        "fx_wind_charge_wind_03",
+        "fx_wind_charge_wind_04",
+        "fx_wind_charge_wind_05",
+        "fx_wind_charge_wind_06",
+        "fx_wind_charge_wind_07",
+        "fx_wind_charge_wind_08",
+        "fx_wind_charge_wind_09",
+        "fx_wind_charge_wind_10",
+        "fx_wind_charge_wind_11"
+      ],
+      "origin": {
+        "x": 100,
+        "y": 130
+      }
+    },
+    "fx_wind_slash": {
+      "label": "疾影风刃",
+      "ticks": 8,
+      "seconds": 0.26666666666666666,
+      "loop_preview": false,
+      "anchor": "body",
+      "anchor_bone": "fx_wind_slash_anchor",
+      "parts": [
+        "fx_wind_slash_blade_0",
+        "fx_wind_slash_blade_1",
+        "fx_wind_slash_blade_2",
+        "fx_wind_slash_trail_00",
+        "fx_wind_slash_trail_01",
+        "fx_wind_slash_trail_02",
+        "fx_wind_slash_trail_03",
+        "fx_wind_slash_trail_04",
+        "fx_wind_slash_trail_05",
+        "fx_wind_slash_trail_06",
+        "fx_wind_slash_trail_07",
+        "fx_wind_slash_trail_08",
+        "fx_wind_slash_trail_09",
+        "fx_wind_slash_trail_10",
+        "fx_wind_slash_trail_11"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 135
+      }
+    },
+    "fx_shadow_afterimage": {
+      "label": "影替辅助尾线",
+      "ticks": 9,
+      "seconds": 0.3,
+      "loop_preview": false,
+      "anchor": "body",
+      "anchor_bone": "fx_shadow_afterimage_anchor",
+      "parts": [
+        "fx_shadow_afterimage_wisp_00",
+        "fx_shadow_afterimage_wisp_01",
+        "fx_shadow_afterimage_wisp_02",
+        "fx_shadow_afterimage_wisp_03",
+        "fx_shadow_afterimage_wisp_04",
+        "fx_shadow_afterimage_wisp_05",
+        "fx_shadow_afterimage_wisp_06",
+        "fx_shadow_afterimage_wisp_07",
+        "fx_shadow_afterimage_wisp_08"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 135
+      }
+    },
+    "fx_invincible": {
+      "label": "无敌轮廓",
+      "ticks": 6,
+      "seconds": 0.2,
+      "loop_preview": true,
+      "anchor": "body",
+      "anchor_bone": "fx_invincible_anchor",
+      "parts": [
+        "fx_invincible_outline"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 135
+      }
+    },
+    "fx_shuriken": {
+      "label": "独立飞镖旋转",
+      "ticks": 12,
+      "seconds": 0.4,
+      "loop_preview": true,
+      "anchor": "projectile",
+      "anchor_bone": "fx_shuriken_anchor",
+      "parts": [
+        "fx_shuriken_star",
+        "fx_shuriken_trail"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 130
+      }
+    },
+    "fx_rock_impact": {
+      "label": "崩岳冲击与岩屑",
+      "ticks": 17,
+      "seconds": 0.5666666666666667,
+      "loop_preview": false,
+      "anchor": "ground",
+      "anchor_bone": "fx_rock_impact_anchor",
+      "parts": [
+        "fx_rock_impact_shock_ring",
+        "fx_rock_impact_rock_00",
+        "fx_rock_impact_rock_01",
+        "fx_rock_impact_rock_02",
+        "fx_rock_impact_rock_03",
+        "fx_rock_impact_rock_04",
+        "fx_rock_impact_rock_05",
+        "fx_rock_impact_rock_06",
+        "fx_rock_impact_rock_07",
+        "fx_rock_impact_rock_08",
+        "fx_rock_impact_rock_09",
+        "fx_rock_impact_rock_10",
+        "fx_rock_impact_rock_11",
+        "fx_rock_impact_rock_12",
+        "fx_rock_impact_rock_13",
+        "fx_rock_impact_rock_14",
+        "fx_rock_impact_rock_15",
+        "fx_rock_impact_rock_16",
+        "fx_rock_impact_dust_0",
+        "fx_rock_impact_dust_1",
+        "fx_rock_impact_dust_2",
+        "fx_rock_impact_dust_3",
+        "fx_rock_impact_dust_4"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "fx_guard_contact": {
+      "label": "格挡金属火花",
+      "ticks": 10,
+      "seconds": 0.3333333333333333,
+      "loop_preview": false,
+      "anchor": "contact",
+      "anchor_bone": "fx_guard_contact_anchor",
+      "parts": [
+        "fx_guard_contact_flash",
+        "fx_guard_contact_ring",
+        "fx_guard_contact_spark_00",
+        "fx_guard_contact_spark_01",
+        "fx_guard_contact_spark_02",
+        "fx_guard_contact_spark_03",
+        "fx_guard_contact_spark_04",
+        "fx_guard_contact_spark_05",
+        "fx_guard_contact_spark_06",
+        "fx_guard_contact_spark_07",
+        "fx_guard_contact_spark_08",
+        "fx_guard_contact_spark_09",
+        "fx_guard_contact_spark_10",
+        "fx_guard_contact_spark_11",
+        "fx_guard_contact_spark_12",
+        "fx_guard_contact_spark_13"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 130
+      }
+    },
+    "fx_ironwall": {
+      "label": "铁壁岩纹",
+      "ticks": 60,
+      "seconds": 2,
+      "loop_preview": true,
+      "anchor": "body",
+      "anchor_bone": "fx_ironwall_anchor",
+      "parts": [
+        "fx_ironwall_rim",
+        "fx_ironwall_facets",
+        "fx_ironwall_orbit_rock_0",
+        "fx_ironwall_orbit_rock_1",
+        "fx_ironwall_orbit_rock_2",
+        "fx_ironwall_orbit_rock_3",
+        "fx_ironwall_orbit_rock_4",
+        "fx_ironwall_orbit_rock_5"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 135
+      }
+    },
+    "fx_rock_shield": {
+      "label": "岩魂护盾",
+      "ticks": 90,
+      "seconds": 3,
+      "loop_preview": true,
+      "anchor": "body",
+      "anchor_bone": "fx_rock_shield_anchor",
+      "parts": [
+        "fx_rock_shield_rim",
+        "fx_rock_shield_facets",
+        "fx_rock_shield_orbit_rock_0",
+        "fx_rock_shield_orbit_rock_1",
+        "fx_rock_shield_orbit_rock_2",
+        "fx_rock_shield_orbit_rock_3",
+        "fx_rock_shield_orbit_rock_4",
+        "fx_rock_shield_orbit_rock_5"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 135
+      }
+    },
+    "fx_wind_speed": {
+      "label": "逐风脚下风纹",
+      "ticks": 90,
+      "seconds": 3,
+      "loop_preview": true,
+      "anchor": "ground",
+      "anchor_bone": "fx_wind_speed_anchor",
+      "parts": [
+        "fx_wind_speed_ring_0",
+        "fx_wind_speed_ring_1",
+        "fx_wind_speed_ring_2"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "fx_poison": {
+      "label": "中毒气泡",
+      "ticks": 120,
+      "seconds": 4,
+      "loop_preview": true,
+      "anchor": "body",
+      "anchor_bone": "fx_poison_anchor",
+      "parts": [
+        "fx_poison_particle_00",
+        "fx_poison_particle_01",
+        "fx_poison_particle_02",
+        "fx_poison_particle_03",
+        "fx_poison_particle_04",
+        "fx_poison_particle_05",
+        "fx_poison_particle_06",
+        "fx_poison_particle_07",
+        "fx_poison_particle_08",
+        "fx_poison_particle_09",
+        "fx_poison_particle_10",
+        "fx_poison_particle_11"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 135
+      }
+    },
+    "fx_bleed": {
+      "label": "流血液滴",
+      "ticks": 90,
+      "seconds": 3,
+      "loop_preview": true,
+      "anchor": "body",
+      "anchor_bone": "fx_bleed_anchor",
+      "parts": [
+        "fx_bleed_particle_00",
+        "fx_bleed_particle_01",
+        "fx_bleed_particle_02",
+        "fx_bleed_particle_03",
+        "fx_bleed_particle_04",
+        "fx_bleed_particle_05",
+        "fx_bleed_particle_06",
+        "fx_bleed_particle_07",
+        "fx_bleed_particle_08",
+        "fx_bleed_particle_09",
+        "fx_bleed_particle_10",
+        "fx_bleed_particle_11"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 135
+      }
+    },
+    "fx_burn": {
+      "label": "灼烧火苗",
+      "ticks": 90,
+      "seconds": 3,
+      "loop_preview": true,
+      "anchor": "body",
+      "anchor_bone": "fx_burn_anchor",
+      "parts": [
+        "fx_burn_particle_00",
+        "fx_burn_particle_01",
+        "fx_burn_particle_02",
+        "fx_burn_particle_03",
+        "fx_burn_particle_04",
+        "fx_burn_particle_05",
+        "fx_burn_particle_06",
+        "fx_burn_particle_07",
+        "fx_burn_particle_08",
+        "fx_burn_particle_09",
+        "fx_burn_particle_10",
+        "fx_burn_particle_11"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 135
+      }
+    },
+    "fx_regen": {
+      "label": "回血光点",
+      "ticks": 60,
+      "seconds": 2,
+      "loop_preview": true,
+      "anchor": "body",
+      "anchor_bone": "fx_regen_anchor",
+      "parts": [
+        "fx_regen_particle_00",
+        "fx_regen_particle_01",
+        "fx_regen_particle_02",
+        "fx_regen_particle_03",
+        "fx_regen_particle_04",
+        "fx_regen_particle_05",
+        "fx_regen_particle_06",
+        "fx_regen_particle_07",
+        "fx_regen_particle_08"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 135
+      }
+    },
+    "fx_rock_swing": {
+      "label": "重刀岩系弧光",
+      "ticks": 8,
+      "seconds": 0.26666666666666666,
+      "loop_preview": false,
+      "anchor": "body",
+      "anchor_bone": "fx_rock_swing_anchor",
+      "parts": [
+        "fx_rock_swing_arc_0",
+        "fx_rock_swing_arc_1"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 135
+      }
+    },
+    "fx_regen_pulse": {
+      "label": "回血结算脉冲",
+      "ticks": 9,
+      "seconds": 0.3,
+      "loop_preview": false,
+      "anchor": "body",
+      "anchor_bone": "fx_regen_pulse_anchor",
+      "parts": [
+        "fx_regen_pulse_pulse_ring",
+        "fx_regen_pulse_plus"
+      ],
+      "origin": {
+        "x": 0,
+        "y": 135
+      }
+    }
+  },
+  "hash": "Cw2AuzaRksqt183MP99NYh082sU"
+}

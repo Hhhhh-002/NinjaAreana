@@ -9,6 +9,7 @@ export interface AvatarView {
   readonly root: Container;
   present(state: Combatant, action: AvatarAction, deltaSeconds: number, cast?: Cast, context?: AvatarContext): void;
   react?(event: CombatEvent): void;
+  anchor?(bone: string): { x: number; y: number; scale: number; facing: number } | undefined;
   destroy(): void;
 }
 export type AvatarFactory = (hero: Hero) => AvatarView;

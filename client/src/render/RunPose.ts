@@ -1,6 +1,7 @@
 /** Retouch only the supplied placeholder cutouts; future artist exports keep their own animation. */
 export function refineRunPose(json: any): void {
-  if (json.skeleton?.hash !== 'shadow-duel-generated-v1') return;
+  if (!['shadow-duel-generated-v1', 'y9GIuQgeCgwUu5f5lKkPCFnB9NM', '+co3anCn2w6d8JjvEX0+d/P024I']
+    .includes(json.skeleton?.hash)) return;
   const run = json.animations?.run?.bones;
   if (!run) return;
   const setup = new Map<string, number>(json.bones.map((bone: any) => [bone.name, bone.rotation ?? 0]));

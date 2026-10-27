@@ -1,0 +1,117 @@
+shadow_duel_fx_library.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fx_arc
+  rotate: false
+  xy: 4, 4
+  size: 238, 67
+  orig: 256, 96
+  offset: 9, 11
+  index: -1
+fx_bubble
+  rotate: false
+  xy: 250, 4
+  size: 36, 36
+  orig: 48, 48
+  offset: 6, 6
+  index: -1
+fx_crescent
+  rotate: false
+  xy: 294, 4
+  size: 223, 248
+  orig: 384, 288
+  offset: 144, 20
+  index: -1
+fx_drop
+  rotate: false
+  xy: 525, 4
+  size: 28, 57
+  orig: 40, 72
+  offset: 6, 9
+  index: -1
+fx_dust
+  rotate: false
+  xy: 561, 4
+  size: 116, 116
+  orig: 128, 128
+  offset: 6, 6
+  index: -1
+fx_facet
+  rotate: false
+  xy: 685, 4
+  size: 124, 204
+  orig: 160, 224
+  offset: 19, 11
+  index: -1
+fx_flame
+  rotate: false
+  xy: 817, 4
+  size: 48, 87
+  orig: 64, 112
+  offset: 8, 17
+  index: -1
+fx_glow
+  rotate: false
+  xy: 873, 4
+  size: 120, 120
+  orig: 128, 128
+  offset: 4, 4
+  index: -1
+fx_outline
+  rotate: false
+  xy: 1001, 4
+  size: 135, 262
+  orig: 160, 288
+  offset: 10, 12
+  index: -1
+fx_plus
+  rotate: false
+  xy: 1144, 4
+  size: 48, 48
+  orig: 64, 64
+  offset: 8, 8
+  index: -1
+fx_ring
+  rotate: false
+  xy: 1200, 4
+  size: 240, 62
+  orig: 256, 80
+  offset: 8, 9
+  index: -1
+fx_shard
+  rotate: false
+  xy: 1448, 4
+  size: 54, 54
+  orig: 64, 64
+  offset: 6, 7
+  index: -1
+fx_shield_rim
+  rotate: false
+  xy: 1510, 4
+  size: 160, 258
+  orig: 192, 288
+  offset: 16, 15
+  index: -1
+fx_shuriken
+  rotate: false
+  xy: 1678, 4
+  size: 78, 78
+  orig: 80, 80
+  offset: 1, 1
+  index: -1
+fx_spark
+  rotate: false
+  xy: 1764, 4
+  size: 56, 56
+  orig: 64, 64
+  offset: 4, 4
+  index: -1
+fx_streak
+  rotate: false
+  xy: 1828, 4
+  size: 154, 8
+  orig: 160, 24
+  offset: 4, 8
+  index: -1

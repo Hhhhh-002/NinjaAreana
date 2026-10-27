@@ -1,95 +1,207 @@
 hero_102_iwaya.png
-size: 1024,1024
+size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-head
-  rotate: false
-  xy: 4, 4
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-torso
-  rotate: false
-  xy: 112, 4
-  size: 106, 136
-  orig: 106, 136
-  offset: 0, 0
-  index: -1
-scarf
-  rotate: false
-  xy: 226, 4
-  size: 212, 184
-  orig: 212, 184
-  offset: 0, 0
-  index: -1
 belt
   rotate: false
-  xy: 446, 4
+  xy: 4, 4
   size: 140, 66
   orig: 140, 66
   offset: 0, 0
   index: -1
-coat
-  rotate: false
-  xy: 594, 4
-  size: 188, 186
-  orig: 188, 186
-  offset: 0, 0
-  index: -1
-thigh
-  rotate: false
-  xy: 790, 4
-  size: 100, 180
-  orig: 100, 180
-  offset: 0, 0
-  index: -1
 calf
   rotate: false
-  xy: 898, 4
+  xy: 152, 4
   size: 58, 122
   orig: 58, 122
   offset: 0, 0
   index: -1
+coat
+  rotate: false
+  xy: 218, 4
+  size: 188, 186
+  orig: 188, 186
+  offset: 0, 0
+  index: -1
 foot
   rotate: false
-  xy: 964, 4
+  xy: 414, 4
   size: 48, 66
   orig: 48, 66
   offset: 0, 0
   index: -1
-upperarm
-  rotate: false
-  xy: 4, 198
-  size: 62, 60
-  orig: 62, 60
-  offset: 0, 0
-  index: -1
 forearm
   rotate: false
-  xy: 74, 198
+  xy: 470, 4
   size: 52, 96
   orig: 52, 96
   offset: 0, 0
   index: -1
+fx_arc
+  rotate: false
+  xy: 530, 4
+  size: 238, 67
+  orig: 256, 96
+  offset: 9, 11
+  index: -1
+fx_bubble
+  rotate: false
+  xy: 776, 4
+  size: 36, 36
+  orig: 48, 48
+  offset: 6, 6
+  index: -1
+fx_crescent
+  rotate: false
+  xy: 820, 4
+  size: 223, 248
+  orig: 384, 288
+  offset: 144, 20
+  index: -1
+fx_drop
+  rotate: false
+  xy: 1051, 4
+  size: 28, 57
+  orig: 40, 72
+  offset: 6, 9
+  index: -1
+fx_dust
+  rotate: false
+  xy: 1087, 4
+  size: 116, 116
+  orig: 128, 128
+  offset: 6, 6
+  index: -1
+fx_facet
+  rotate: false
+  xy: 1211, 4
+  size: 124, 204
+  orig: 160, 224
+  offset: 19, 11
+  index: -1
+fx_flame
+  rotate: false
+  xy: 1343, 4
+  size: 48, 87
+  orig: 64, 112
+  offset: 8, 17
+  index: -1
+fx_glow
+  rotate: false
+  xy: 1399, 4
+  size: 120, 120
+  orig: 128, 128
+  offset: 4, 4
+  index: -1
+fx_outline
+  rotate: false
+  xy: 1527, 4
+  size: 135, 262
+  orig: 160, 288
+  offset: 10, 12
+  index: -1
+fx_plus
+  rotate: false
+  xy: 1670, 4
+  size: 48, 48
+  orig: 64, 64
+  offset: 8, 8
+  index: -1
+fx_ring
+  rotate: false
+  xy: 1726, 4
+  size: 240, 62
+  orig: 256, 80
+  offset: 8, 9
+  index: -1
+fx_shard
+  rotate: false
+  xy: 1974, 4
+  size: 54, 54
+  orig: 64, 64
+  offset: 6, 7
+  index: -1
+fx_shield_rim
+  rotate: false
+  xy: 4, 274
+  size: 160, 258
+  orig: 192, 288
+  offset: 16, 15
+  index: -1
+fx_shuriken
+  rotate: false
+  xy: 172, 274
+  size: 78, 78
+  orig: 80, 80
+  offset: 1, 1
+  index: -1
+fx_spark
+  rotate: false
+  xy: 258, 274
+  size: 56, 56
+  orig: 64, 64
+  offset: 4, 4
+  index: -1
+fx_streak
+  rotate: false
+  xy: 322, 274
+  size: 154, 8
+  orig: 160, 24
+  offset: 4, 8
+  index: -1
 hand
   rotate: false
-  xy: 134, 198
+  xy: 484, 274
   size: 62, 92
   orig: 62, 92
   offset: 0, 0
   index: -1
+head
+  rotate: false
+  xy: 554, 274
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+scarf
+  rotate: false
+  xy: 662, 274
+  size: 212, 184
+  orig: 212, 184
+  offset: 0, 0
+  index: -1
 shoulder
   rotate: false
-  xy: 204, 198
+  xy: 882, 274
   size: 154, 148
   orig: 154, 148
   offset: 0, 0
   index: -1
+thigh
+  rotate: false
+  xy: 1044, 274
+  size: 100, 180
+  orig: 100, 180
+  offset: 0, 0
+  index: -1
+torso
+  rotate: false
+  xy: 1152, 274
+  size: 106, 136
+  orig: 106, 136
+  offset: 0, 0
+  index: -1
+upperarm
+  rotate: false
+  xy: 1266, 274
+  size: 62, 60
+  orig: 62, 60
+  offset: 0, 0
+  index: -1
 weapon
   rotate: false
-  xy: 366, 198
+  xy: 1336, 274
   size: 374, 152
   orig: 374, 152
   offset: 0, 0

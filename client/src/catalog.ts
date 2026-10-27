@@ -17,6 +17,7 @@ export const skills: Skill[] = data.skills.map(s => ({
   mana: +s.mana_cost, cooldown: +s.cooldown_ticks, mode: s.enabled_mode,
   startup: +s.startup_ticks, active: +s.active_ticks, recovery: +s.recovery_ticks,
 }));
-export const effects = new Map(data.effects.map(e => [+e.effect_id, { name: e.effect_name, type: e.effect_type }]));
+export const effects = new Map(data.effects.map(e => [+e.effect_id, { name: e.effect_name, type: e.effect_type,
+  duration: +e.duration_ticks, skillId: +e.skill_id }]));
 export const heroById = (id: number) => heroes.find(h => h.id === id) ?? heroes[0];
 export const skillById = (id: number) => skills.find(s => s.id === id);

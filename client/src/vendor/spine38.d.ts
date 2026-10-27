@@ -4,7 +4,7 @@ export interface SpineAttachment {
   computeWorldVertices(bone: unknown, out: Float32Array, offset: number, stride: number): void;
 }
 export interface SpineSlot {
-  bone: unknown; color: Color; data: { index: number; blendMode: number; name?: string };
+  bone: unknown; color: Color; data: { index: number; blendMode: number; name: string };
   getAttachment(): SpineAttachment | null;
 }
 export interface SpineAnimation {

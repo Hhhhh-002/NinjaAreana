@@ -1,6 +1,6 @@
 # 影斗客户端
 
-当前目录：`D:\VSCodeProjects\NinjaArenaClient`。TypeScript + PixiJS v8 + Vite + Protobuf，连接现有 Java 网关。整个客户端目录可以放到另一台电脑或任意位置，不依赖服务端源码和原始动画工程。
+仓库目录：`client/`（本机 `D:\IdeaProjects\NinjaAreana\client`）。兼容副本同步在 `D:\VSCodeProjects\NinjaArenaClient`。TypeScript + PixiJS v8 + Vite + Protobuf，连接现有 Java 网关。整个客户端目录可以放到另一台电脑或任意位置，不依赖服务端源码和原始动画工程。
 
 ## 启动
 
@@ -58,7 +58,7 @@ powershell -ExecutionPolicy Bypass -File .\start-client.ps1
 
 - `src/generated/protocol.json`、`commands.ts`：客户端使用的协议和 CMD 副本。
 - `src/generated/catalog.json`：客户端展示用角色与技能配置副本。
-- `src/generated/animations.json`：动作映射副本。
+- `src/generated/animations.json`、`spine-fx.json`：动作与原生特效映射副本。
 - `public/assets`：客户端已打包的背景和 Spine 资源。
 
 只有开发人员更新协议、配置表或动画素材时，才手动执行同步。同步输入为：
@@ -66,8 +66,8 @@ powershell -ExecutionPolicy Bypass -File .\start-client.ps1
 - `game-protocol/src/main/proto`：生成Protobuf描述。
 - `game-common/.../GameCommands.java`：生成CMD编号。
 - `config/src/main/resources`：读取hero、skill、skill_effect三个CSV。
-- 动画目录的 `manifest.json`：读取角色动作名、技能动画名和30Hz动作元数据。
-- `projects/<hero>/`：校验 Spine 3.8.75 工程 JSON；`export/<hero>/`：复制 atlas 和 PNG。
+- 统一素材包中的 `特效_Spine_V1.0/manifest.json` 与 `骨骼动画_V1.0/manifest.json`：读取组合工程、16段原生特效与动作映射。
+- 正式导出的角色/独立特效库 JSON 和 atlas；源工程 JSON 提供附件设计尺寸，`images/` 提供原始 RGBA 像素。
 
 更新服务端协议和配置表（需要有服务端源码的开发机器）：
 
@@ -79,7 +79,8 @@ npm run sync:data
 更新动画资源（需要有原始动画工程的开发机器）：
 
 ```powershell
-$env:NINJA_ANIMATION_ROOT = '你的骨骼动画_V1.0目录'
+$env:NINJA_ANIMATION_ROOT = '你的影斗_动作与特效_统一素材包_V1.0目录'
+# 也可以直接填该目录中的 特效_Spine_V1.0
 npm run sync:animations
 ```
 
@@ -87,27 +88,28 @@ npm run sync:animations
 
 同步后将 `src/generated` 和 `public/assets` 一起保存、分发并重新构建客户端，保证与目标服务端的协议和配置版本一致；其他电脑直接使用这些文件。浏览器从客户端自身 `/assets/spine/` 加载动画，不读取 D 盘绝对路径。
 
-## Spine接入位置
+## Spine 动作与特效接入
 
-`src/render/AvatarView.ts` 定义 `AvatarView`、`AvatarFactory`；`BattleRenderer` 默认使用 `SpineAvatar`，占位角色仍保留用于没有资源时的测试。
+当前使用统一素材包内 Spine 3.8.75 的 `hero_101_hayate_with_fx`（44段）、`hero_102_iwaya_with_fx`（40段）和 `shadow_duel_fx_library`（16段）。角色动作、影替预设姿势残影与16种特效均来自原生骨骼、插槽颜色和图片附件，旧程序绘制的刀光、星形飞镖和护盾轮廓已移除。
 
-- 角色局部原点为脚底中心 `(0,0)`，角色位置使用服务器 `centerX/feetY`，Y向下增大。
-- `present` 接收权威状态、idle/move/jump/startup/active/recovery/dead动作、显示时间增量及当前施法数据（skillId、castId、phase、endTick），用于选择具体技能动画。
-- 当前使用素材目录自带的 Spine 3.8 运行库和 `shadow-duel-generated-v1` 解析兼容处理；资源会复制到 `public/assets/spine`。原始导出版本为 Spine 3.8.75。
-- `scripts/sync-animations.mjs` 仅在手动同步时校验两个角色的动作，并复制 JSON、atlas、PNG；普通构建直接使用已有副本。
-- 动画目录变化时设置进程环境变量 `NINJA_ANIMATION_ROOT`。运行库来源与兼容处理见 `src/vendor/NOTICE.md`，许可证随构建发布。
-- 待机、跑步、起跳/上升/下落/落地、格挡、死亡和五个主动技能已映射；技能从 `endTick - 配置总帧数` 推算起点，按显示tick采样，阶段切换不从头重播。前摇可叠加跑步和上半身动作。
-- 服务端快照增加 `blocking/grounded/velocityY` 三个字段，需重新编译并重启服务端。普通伤害包含持续伤害，因此只在明确的 `CAST_CANCELLED` 结果上切受击动作，避免每次中毒跳血打断动画。
-- 技能特效之后接在 `BattleRenderer` 的施法/结果呈现位置；客户端动画事件不决定服务器命中、扣血或技能结束。
+- `SpineMesh.ts` 共用角色/特效的区域附件渲染器，包含透明度、颜色、混合和绘制顺序；透明插槽按需创建网格。
+- 角色位置、朝向、施法和状态来自服务器快照；角色身高仅按本体附件计算，忽略透明特效与残影。
+- `AnimationDirector.ts` 按显示 Tick 采样动作。阶段变化不中途重播；移动前摇使用下半身行为与上半身动作叠加；死亡在最终 Tick 停止后继续播完。普攻使用 `attack_light_1`；其他无玩法配置的预留攻击不会擅自新增按键。
+- `SkillVfx.ts` 用独立特效实例管理施法表现、持续状态、飞镖与结算反馈。组合角色中的 `fx_*` 插槽不重复绘制；影替的 `shadow_pose_*` 残影与主体透明仍由角色动画播放。`*_fx_preview` 制作演示不作为游戏技能动作。
+- 疾影斩：前摇聚风挂在实际武器骨骼位置，生效后播放风刃；崩岳击：生效挥斩后接地面冲击；两种普攻复用对应风/岩挥斩。
+- 护盾、铁壁、逐风、无敌、中毒、流血、灼烧、回血光点按实际目标状态显示、刷新和移除；不会在挥空时给敌人添加状态。
+- 飞镖使用原生 `fx_shuriken`，世界位置及消失跟随投射物快照；不播放演示文件里的固定飞行路线。
+- 命中/格挡共用素材中的 `fx_guard_contact` 接触火花；实际 `HEAL` 结果触发 `fx_regen_pulse`。周期伤害不重复播接触火花或受击姿势。
+- 动作与特效共用插值显示时间；断帧后直接采样正确进度，技能打断、角色死亡和退出对局会清理相关表现。客户端动画事件不参与扣血或玩法判定。
+
+导入时修复了本批素材的两处打包问题：正式导出把附件显示尺寸重置为PNG尺寸，导入脚本按源工程还原宽高；旧图集生成器的 RGB MaxFilter 改动了不透明像素，`scripts/spine-atlas.mjs` 从原附件重建同坐标图集，保留原RGBA和透明边距。没有重画原始美术、修改原始 `.spine` 工程或技能关键帧。走路腿部修正仅对本批已验证骨骼启用。
+
+运行库仅为已验证的JSON骨骼hash开放3.8.75兼容；二进制SKEL未接入。见 `src/vendor/NOTICE.md`。许可证随客户端静态资源发布。
 
 ## 当前范围与验证
 
 J 为两位角色的普攻（1101/2101），无需蓝量；L 为风隐的训练飞镖。回蓝由服务端控制，默认每30逻辑帧恢复5点。冷却显示依据成功响应/CAST_STARTED与本地同步CSV估算，最终以服务器校验为准。背景选择仅影响本地外观。
 
-测试覆盖追帧上限与插值、64位ID与协议编码、响应关联、断线不重发、登录入场界面状态、输入释放、两个 Spine 骨骼的全动作采样和动画选择。已完成类型检查、生产构建与自动测试；尚未完成真实双人后端联调和浏览器画面验收。
-
-## 战斗表现补齐
-
-斩击、重击地面冲击、影替残影、命中/格挡火花和持续状态光效由服务器施法、状态、结果驱动。当前为程序绘制的临时表现，可替换成正式 Spine 特效；表现不参与伤害计算。提供的占位骨骼仅在 run 动画中修正腿部朝向和脚掌旋转，不修改原美术工程。
+测试覆盖追帧上限与插值、64位ID与协议编码、响应关联、断线不重发、登录入场界面状态、输入释放、两个 Spine 骨骼的全动作采样和动画选择。已完成类型检查、生产构建与自动测试；已完成本机 Chrome 的原生动作/特效画面检查；本次未运行真实双人后端联调。
 
 服务端仓库：[NinjaArenaServer](https://github.com/Hhhhh-002/NinjaAreana/tree/main/server)。

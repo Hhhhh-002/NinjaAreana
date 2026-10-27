@@ -8,6 +8,8 @@ import { AnimationDirector } from '../src/render/AnimationDirector';
 import type { Cast, Combatant, CombatEvent } from '../src/model';
 import { SpineAvatar } from '../src/render/SpineAvatar';
 import { heroById } from '../src/catalog';
+import { fxLibrary } from '../src/render/SpineAssets';
+import { SpineMesh } from '../src/render/SpineMesh';
 
 const state = (changes: Partial<Combatant> = {}): Combatant => ({
   userId: 'a', entityId: '1', heroId: 101, hp: 1000, mana: 100, guard: 100,
@@ -18,13 +20,17 @@ const context = (tick: number) => ({ tick, tickRate: 30, groundY: 400 });
 describe('supplied Spine 3.8 cutout assets', () => {
   for (const hero of animations.heroes) it(`parses hero ${hero.id}, evaluates every animation and produces finite textured quads`, () => {
     const base = new URL(`../public/assets/spine/${hero.key}/${hero.key}`, import.meta.url);
-    const data = parseSpine(JSON.parse(readFileSync(fileURLToPath(`${base.href}.json`), 'utf8')),
-      readFileSync(fileURLToPath(`${base.href}.atlas`), 'utf8'), 1024, 1024);
+    const json = JSON.parse(readFileSync(fileURLToPath(`${base.href}.json`), 'utf8'));
+    expect(json.skins[0].attachments.foot_front.foot.width).toBe(25);
+    expect(json.skins[0].attachments.foot_front.foot.height).toBe(30);
+    const data = parseSpine(json,
+      readFileSync(fileURLToPath(`${base.href}.atlas`), 'utf8'), 2048, 2048);
     const skeleton = createSkeleton(data);
     validateSkeleton(skeleton);
     expect(data.animations.length).toBe(Object.keys(hero.animations).length);
     const vertices = new Float32Array(8);
     for (const animation of data.animations) {
+      let finite = true, validUVs = true;
       for (let step = 0; step <= Math.ceil(animation.duration * 30); step++) {
         skeleton.setToSetupPose();
         animation.apply(skeleton, 0, Math.min(animation.duration, step / 30), false, null, 1,
@@ -33,12 +39,13 @@ describe('supplied Spine 3.8 cutout assets', () => {
         for (const slot of skeleton.drawOrder) {
           const attachment = slot.getAttachment()!;
           attachment.computeWorldVertices(slot.bone, vertices, 0, 2);
-          expect([...vertices].every(Number.isFinite)).toBe(true);
-          expect(Array.from(attachment.uvs).every(v => Number.isFinite(v) && v >= 0 && v <= 1)).toBe(true);
+          finite &&= [...vertices].every(Number.isFinite);
+          validUVs &&= Array.from(attachment.uvs).every(v => Number.isFinite(v) && v >= 0 && v <= 1);
         }
         const root = skeleton.bones.find(b => b.data.name === 'root')!;
         expect(root.worldX).toBe(0); expect(root.worldY).toBe(0);
       }
+      expect(finite, animation.name).toBe(true);expect(validUVs, animation.name).toBe(true);
     }
     const run = data.findAnimation('run')!;
     for (let step = 0; step <= 24; step++) {
@@ -59,6 +66,28 @@ describe('supplied Spine 3.8 cutout assets', () => {
     avatar.present(state({ heroId: hero.id, alive: false }), 'dead', 1 / 60);
     avatar.destroy();
     expect(avatar.root.destroyed).toBe(true);
+  });
+});
+
+describe('exported independent native effect library', () => {
+  it('parses all 16 effects, evaluates every tick and renders their actual RGBA attachments', () => {
+    const base = new URL(`../public/assets/spine/${fxLibrary.key}/${fxLibrary.key}`, import.meta.url);
+    const data = parseSpine(JSON.parse(readFileSync(fileURLToPath(`${base.href}.json`), 'utf8')),
+      readFileSync(fileURLToPath(`${base.href}.atlas`), 'utf8'), 2048, 2048);
+    expect(data.animations).toHaveLength(16);
+    for (const [name, definition] of Object.entries(fxLibrary.effects)) {
+      const parts = new Set<string>(definition.parts);
+      const mesh = new SpineMesh(data, Texture.WHITE, slot => parts.has(slot));
+      let visible = false, finite = true;
+      for (let step = 0; step <= definition.ticks; step++) {
+        mesh.present([{ name, seconds: step / 30, loop: false }]);
+        visible ||= mesh.root.children.some(c => c.visible && c.alpha > 0);
+        finite &&= mesh.skeleton.bones.every(b => [b.a,b.b,b.c,b.d,b.worldX,b.worldY].every(Number.isFinite));
+      }
+      expect(finite, name).toBe(true);expect(visible, name).toBe(true);
+      expect(mesh.root.children.length).toBeLessThanOrEqual(parts.size);
+      mesh.destroy();
+    }
   });
 });
 
@@ -105,5 +134,22 @@ describe('authoritative animation selection', () => {
     expect(jumping.layers(state({ grounded: false, velocityY: 2 }), 'jump', 0)[0].name).toBe('jump_fall');
     const normal = new AnimationDirector(101); normal.react({ type: 'DAMAGE' } as CombatEvent);
     expect(normal.layers(state(), 'idle', 0)[0].name).toBe('idle');
+  });
+  it('freezes base poses on a frozen display clock, restarts locomotion after a cast and seeks reactions', () => {
+    const director = new AnimationDirector(101);
+    director.layers(state(), 'move', 0.02, undefined, context(10));
+    expect(director.layers(state(), 'move', 2, undefined, context(10))[0].seconds).toBe(0);
+    expect(director.layers(state(), 'move', 0, undefined, context(13))[0].seconds).toBeCloseTo(3/30);
+    director.layers(state(), 'active', 0, { ...cast, phase: 'ACTIVE' }, context(106));
+    expect(director.layers(state(), 'move', 0, undefined, context(118))[0].seconds).toBe(0);
+    director.react({ type: 'HIT_REACTION', serverTick: '120', skillId: 2001 } as CombatEvent);
+    const hit = director.layers(state(), 'idle', 0, undefined, context(122));
+    expect(hit[0].name).toBe('hit_heavy');expect(hit[0].seconds).toBeCloseTo(2/30);
+  });
+  it('finishes the confirmed death animation even when the final match tick is frozen', () => {
+    const director = new AnimationDirector(101), dead = state({ alive: false });
+    expect(director.layers(dead, 'dead', 0.1, undefined, context(100))[0].seconds).toBe(0);
+    expect(director.layers(dead, 'dead', 0.1, undefined, context(100))[0].seconds).toBeCloseTo(0.1);
+    expect(director.layers(dead, 'dead', 0.1, undefined, context(100))[0].seconds).toBeCloseTo(0.2);
   });
 });

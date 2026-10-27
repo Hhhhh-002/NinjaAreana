@@ -15,6 +15,6 @@ NinjaAreana/
 
 客户端在 client 目录执行 npm ci、npm run dev，或使用 start-client.ps1。服务端启动步骤见 server/README.md；Nacos 配置示例为 server/config/nacos/global-prod.example.yaml。数据库密码等本机配置不纳入版本控制。
 
-角色普攻和技能动作使用已接入的 Spine 骨骼素材。当前素材不含独立刀光、冲击、命中火花和状态特效附件，这些附加表现暂由 PixiJS 绘制，后续可替换为正式美术特效。
+角色动作和技能表现已接入统一素材包的 Spine 组合工程及16段独立原生特效；施法、状态、投射物和结算结果由服务端数据驱动。详见 client/README.md。
 
 原客户端与服务端的提交历史保留在本仓库中。

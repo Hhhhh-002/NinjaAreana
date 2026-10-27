@@ -1,21 +1,19 @@
 import { Application, Assets, Container, Graphics, Sprite, Text } from 'pixi.js';
-import { effects, heroById } from '../catalog';
+import { heroById } from '../catalog';
 import type { BattleSnapshot, CombatEvent } from '../model';
 import { type AvatarFactory, type AvatarView, type AvatarAction } from './AvatarView';
 import { loadSpineResources } from './SpineAssets';
 import { SpineAvatar } from './SpineAvatar';
-import { SkillVfx } from './SkillVfx';
+import { SkillVfx, isDirectHit } from './SkillVfx';
 
 export class BattleRenderer {
   private readonly app = new Application();
   private readonly world = new Container();
   private readonly actors = new Container();
-  private readonly projectiles = new Container();
   private readonly debug = new Graphics();
   private readonly vfx = new SkillVfx();
   private readonly background = new Sprite();
   private readonly avatars = new Map<string, { view: AvatarView; lastX: number; heroId: number }>();
-  private readonly flying = new Map<string, Graphics>();
   private readonly labels: { label: Text; age: number; x: number; y: number }[] = [];
   private readonly pendingEffects: { event: CombatEvent; frame: BattleSnapshot }[] = [];
   private resize?: ResizeObserver;
@@ -31,7 +29,7 @@ export class BattleRenderer {
       background: 0x182830, preference: 'webgl', autoDensity: true, resolution: Math.min(devicePixelRatio, 2) });
     this.app.canvas.setAttribute('aria-label', '影斗战斗场景');
     this.host.prepend(this.app.canvas);
-    this.world.addChild(this.actors, this.projectiles, this.vfx.root, this.debug);
+    this.world.addChild(this.actors, this.vfx.root, this.debug);
     this.app.stage.addChild(this.background, this.world);
     await loadSpineResources();
     this.ready = true;
@@ -71,8 +69,6 @@ export class BattleRenderer {
     this.labels.length = 0;
     for (const entry of this.avatars.values()) entry.view.destroy();
     this.avatars.clear();
-    for (const graphic of this.flying.values()) graphic.destroy();
-    this.flying.clear();
   }
   render(frame: BattleSnapshot, elapsedSeconds: number): void {
     if (!this.ready) return;
@@ -83,6 +79,16 @@ export class BattleRenderer {
     const delta = Math.min(elapsedSeconds, 0.1);
     const ids = new Set(frame.combatants.map(c => c.entityId));
     this.debug.clear();
+    // Consume feedback in server order before presenting the pose, so reactions start this render.
+    const ready: { event: CombatEvent; impact: boolean }[] = [];
+    const shownTick = Number(frame.serverTick);
+    for (let i = 0; i < this.pendingEffects.length;) {
+      const pending = this.pendingEffects[i];
+      if (Number(pending.event.serverTick) > shownTick) { i++; continue; }
+      this.pendingEffects.splice(i, 1);
+      if (shownTick - Number(pending.event.serverTick) <= 8)
+        ready.push({ event: pending.event, impact: isDirectHit(pending.event, pending.frame) });
+    }
     for (const [id, entry] of this.avatars) if (!ids.has(id)) { entry.view.destroy(); this.avatars.delete(id); }
     for (const c of frame.combatants) {
       let entry = this.avatars.get(c.entityId);
@@ -92,39 +98,23 @@ export class BattleRenderer {
         this.actors.addChild(entry.view.root); this.avatars.set(c.entityId, entry);
       }
       const cast = frame.casts.find(s => s.castId === c.currentCastId);
+      for (const { event, impact } of ready) if (event.targetUserId === c.userId) {
+        entry.view.react?.(event);
+        if (impact && !cast) entry.view.react?.({ ...event, type: 'HIT_REACTION' });
+      }
       const action: AvatarAction = !c.alive ? 'dead' : cast ? cast.phase.toLowerCase() as AvatarAction
         : c.feetY < frame.groundY - 1 ? 'jump' : Math.abs(c.centerX - entry.lastX) > 0.02 ? 'move' : 'idle';
       entry.view.present(c, action, delta, cast, { tick: frame.presentationTick ?? Number(frame.serverTick),
         tickRate: frame.tickRate || 30, groundY: frame.groundY }); entry.lastX = c.centerX;
-      const shield = c.statuses.some(s => effects.get(s.effectId)?.type === 'SHIELD');
-      if (shield) this.debug.ellipse(c.centerX, c.feetY - 60, 36, 68).stroke({ color: 0xe8c980, width: 2, alpha: 0.7 });
       if (this.showBoxes) {
         const hero = heroById(c.heroId);
         this.debug.rect(c.centerX - hero.width / 2, c.feetY - hero.height, hero.width, hero.height)
           .stroke({ color: hero.color, width: 1, alpha: 0.85 });
       }
     }
-    const projectileIds = new Set(frame.projectiles.map(p => p.instanceId));
-    for (const [id, g] of this.flying) if (!projectileIds.has(id)) { g.destroy(); this.flying.delete(id); }
-    for (const p of frame.projectiles) {
-      let graphic = this.flying.get(p.instanceId);
-      if (!graphic) {
-        graphic = new Graphics().star(0, 0, 4, 13, 4).fill(0xdde7de).stroke({ color: 0x476c6f, width: 1 });
-        this.projectiles.addChild(graphic); this.flying.set(p.instanceId, graphic);
-      }
-      graphic.position.set(p.x, p.y); graphic.rotation += delta * 16;
-    }
-    const shownTick = Number(frame.serverTick);
-    for (let i = this.pendingEffects.length - 1; i >= 0; i--) {
-      const pending = this.pendingEffects[i];
-      if (Number(pending.event.serverTick) > shownTick) continue;
-      this.pendingEffects.splice(i, 1);
-      if (shownTick - Number(pending.event.serverTick) <= 8) {
-        const target = pending.frame.combatants.find(c => c.userId === pending.event.targetUserId);
-        this.avatars.get(target?.entityId ?? '')?.view.react?.(pending.event);
-        this.addResult(pending.event, pending.frame);
-        this.vfx.result(pending.event, pending.frame);
-      }
+    for (const { event, impact } of ready) {
+      this.addResult(event, frame);
+      this.vfx.result(impact ? { ...event, type: 'HIT_REACTION' } : event, frame);
     }
     for (let i = this.labels.length - 1; i >= 0; i--) {
       const label = this.labels[i]; label.age += delta;
@@ -132,7 +122,7 @@ export class BattleRenderer {
       label.label.position.set(label.x, label.y - label.age * 30);
       label.label.alpha = Math.min(1, (0.85 - label.age) * 4);
     }
-    this.vfx.update(frame, delta);
+    this.vfx.update(frame, delta, (id, bone) => this.avatars.get(id)?.view.anchor?.(bone));
     if (this.showBoxes) this.debug.moveTo(0, frame.groundY).lineTo(this.width, frame.groundY).stroke({ color: 0xffffff, width: 1, alpha: 0.5 });
     this.app.render();
   }
